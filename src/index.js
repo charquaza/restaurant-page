@@ -1,32 +1,31 @@
+import {buildDOM} from "./buildDOM.js";
 import {createHomePage} from "./home.js";
 import {createMenuPage} from "./menu.js";
 import {createContactPage} from "./contact.js";
 
-var contentContainer = document.querySelector("div#content");
+// var contentContainer = document.querySelector("div#content");
 
-var header = document.createElement("header");
-var restaurantName = document.createElement("h1");
-restaurantName.textContent = "Berry Cafe";
-var nav = document.createElement("nav");
+// var header = document.createElement("header");
+// var restaurantName = document.createElement("h1");
+// restaurantName.textContent = "Berry Cafe";
+// var nav = document.createElement("nav");
 
-var tabList = document.createElement("ul");
-var homeTab = document.createElement("li");
-homeTab.textContent = "Home";
-var menuTab = document.createElement("li");
-menuTab.textContent = "Menu";
-var contactTab = document.createElement("li");
-contactTab.textContent = "Contact Us"
-tabList.addEventListener("click", switchTabs);
+// var tabList = document.createElement("ul");
+// var homeTab = document.createElement("li");
+// homeTab.textContent = "Home";
+// var menuTab = document.createElement("li");
+// menuTab.textContent = "Menu";
+// var contactTab = document.createElement("li");
+// contactTab.textContent = "Contact Us"
+// tabList.addEventListener("click", switchTabs);
 
-var main = document.createElement("main");
-main.appendChild(createHomePage());
+// var main = document.createElement("main");
+// main.appendChild(createHomePage());
 
-var currTabName = "Home";
-contentContainer.replaceChildren(header, main);
-header.replaceChildren(restaurantName, nav);
-nav.appendChild(tabList);
-tabList.replaceChildren(homeTab, menuTab, contactTab);
-
+// contentContainer.replaceChildren(header, main);
+// header.replaceChildren(restaurantName, nav);
+// nav.appendChild(tabList);
+// tabList.replaceChildren(homeTab, menuTab, contactTab);
 
 function switchTabs(click) {
     var tabName = click.target.textContent;
@@ -63,4 +62,13 @@ function styleTabs(tabName) {
     });
 }
 
+buildDOM();
+
+var main = document.querySelector("main");
+main.appendChild(createHomePage());
+
+var tabList = document.querySelector("nav > ul");
+tabList.addEventListener("click", switchTabs);
+
+var currTabName = "Home";
 styleTabs(currTabName);
