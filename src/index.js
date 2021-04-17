@@ -21,13 +21,20 @@ tabList.addEventListener("click", switchTabs);
 var main = document.createElement("main");
 main.appendChild(createHomePage());
 
+var currTab = "Home";
 contentContainer.replaceChildren(header, main);
 header.replaceChildren(restaurantName, nav);
 nav.appendChild(tabList);
 tabList.replaceChildren(homeTab, menuTab, contactTab);
 
+
 function switchTabs(click) {
     var tab = click.target.textContent;
+
+    if (tab === currTab) {
+        return;
+    }
+
     switch (tab) {
         case "Home": 
             main.replaceChildren(createHomePage());
@@ -38,5 +45,9 @@ function switchTabs(click) {
         case "Contact Us": 
             main.replaceChildren(createContactPage());
             break;
+        default:
+            return;
     }
+
+    currTab = tab;
 }
