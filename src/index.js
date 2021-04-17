@@ -21,7 +21,7 @@ tabList.addEventListener("click", switchTabs);
 var main = document.createElement("main");
 main.appendChild(createHomePage());
 
-var currTab = "Home";
+var currTabName = "Home";
 contentContainer.replaceChildren(header, main);
 header.replaceChildren(restaurantName, nav);
 nav.appendChild(tabList);
@@ -29,13 +29,13 @@ tabList.replaceChildren(homeTab, menuTab, contactTab);
 
 
 function switchTabs(click) {
-    var tab = click.target.textContent;
+    var tabName = click.target.textContent;
 
-    if (tab === currTab) {
+    if (tabName === currTabName) {
         return;
     }
 
-    switch (tab) {
+    switch (tabName) {
         case "Home": 
             main.replaceChildren(createHomePage());
             break;
@@ -49,5 +49,18 @@ function switchTabs(click) {
             return;
     }
 
-    currTab = tab;
+    currTabName = tabName;
+    styleTabs(currTabName);
 }
+
+function styleTabs(tabName) {
+    tabList.childNodes.forEach(function applyStyle(tab) {
+        if (tab.textContent === tabName) {
+            tab.classList.add("selected");
+        } else {
+            tab.classList.remove("selected");
+        }
+    });
+}
+
+styleTabs(currTabName);
